@@ -1,3 +1,4 @@
+
 public class EulerWinkel {
 
 	public static double eulerWinkelBerechnen(double a[][]) {
@@ -18,9 +19,19 @@ public class EulerWinkel {
 
 		double alpha = 0;
 
-		double xUStrich[] = new double[3];
+		double uStrichU[] = new double[3];
+
+		for (int i = 0; i < uStrichU.length; i++) {
+			
+			uStrichU[i]=u[i]*uStrich[i];
+			
+		}
 		
-		double x[]={1,0,0};
+		double uStrichUVerrechnet= uStrichU[0]+uStrichU[1]+uStrichU[2];
+
+		double xUStrich[] = new double[3];
+
+		double x[] = { 1, 0, 0 };
 
 		for (int i = 0; i < u.length; i++) {
 
@@ -28,22 +39,17 @@ public class EulerWinkel {
 
 		}
 
-		double xBetrag = Math.sqrt(u1 + u2 + u3);
-		
-		double xDachBetrag = Math.sqrt(1+0+0);
+		double uBetrag = Math.sqrt((u[0] * u[0]) + (u[1] * u[1]) + (u[2] * u[2]));
+
+		double xDachBetrag = Math.sqrt(1 + 0 + 0);
 
 		double uStrichBetrag = Math.sqrt(u1 + u2 + 0);
-		
 
 		double xUstrichVerrechnet = xUStrich[0] + xUStrich[1] + xUStrich[2];
-		
-		System.out.println(xUstrichVerrechnet);
-		
-		System.out.println(xUstrichVerrechnet / (xDachBetrag * uStrichBetrag));
 
 		phi = Math.toDegrees(Math.acos(xUstrichVerrechnet / (xDachBetrag * uStrichBetrag)));
 
-		beta = Math.toDegrees(Math.acos(xUstrichVerrechnet / (xBetrag * uStrichBetrag)));
+		beta = Math.toDegrees(Math.acos(uStrichUVerrechnet/ (uBetrag * uStrichBetrag)));
 
 		double k1 = (z[1] * u[2]) - (z[2] * u[1]);
 
@@ -55,26 +61,10 @@ public class EulerWinkel {
 
 		double kBetrag = Math.sqrt((k1 * k1) + (k2 * k2) + (k3 * k3));
 
-		double uBetrag = Math.sqrt((u[0] * u[0]) + (u[1] * u[1]) + (u[2] * u[2]));
 
 		alpha = Math.toDegrees(Math.acos(kU / (kBetrag * uBetrag)));
 
-		// double [][]drehungZ={{Math.cos(phi), -Math.sin(phi), 0},
-		// {Math.sin(phi), Math.cos(phi), 0},
-		// {0,0,1}
-		// };
-
-		// double [][]drehungY={{Math.cos(beta), 0, Math.sin(beta)},
-		// { 0, 1, 0},
-		// {-Math.sin(beta), 0, Math.cos(beta)}
-		// };
-
-		// double [][]drehungX={{ 1, 0, 0},
-		// { 0, Math.cos(alpha), -Math.sin(alpha)},
-		// {0, Math.sin(alpha), Math.cos(alpha)}
-		// };
-
-		return alpha;
+		return phi;
 
 	}
 }
