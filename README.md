@@ -1,0 +1,2 @@
+# EulerWinkel
+Halb richtige EulerWinkelPrototyp.
